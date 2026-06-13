@@ -24,8 +24,7 @@ tabs = st.tabs([
     "Live Vélib",
     "Saturation — Mairie",
     "Attractivité — Commerçants",
-    "Sécurité Capteurs",
-    "État de la Pipeline"
+    "Sécurité Capteurs"
 ])
 
 # --- TAB 0 : LIVE VELIB ---

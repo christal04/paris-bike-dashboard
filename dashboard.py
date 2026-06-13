@@ -113,7 +113,7 @@ with tabs[3]:
     st.caption("Suivi de l'état de marche et de la maintenance des capteurs")
     
     data_inact = app_fetch_data("/sensor-inactivity")
-    if data_act and "data" in data_inact:
+    if data_inact and "data" in data_inact:  # <--- Remplacé data_act par data_inact ici
         if len(data_inact["data"]) > 0:
             latest = data_inact["data"][0]
             c1, c2, c3, c4 = st.columns(4)

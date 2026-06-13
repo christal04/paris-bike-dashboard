@@ -126,14 +126,3 @@ with tabs[3]:
             st.success("Statut des capteurs : OPÉRATIONNEL")
     else:
         st.error("Données d'inactivité indisponibles via l'API.")
-
-# --- TAB 4 : PIPELINE ---
-with tabs[4]:
-    st.header("Statut de l'Infrastructure d'Échange")
-    st.markdown("""
-    **Composants du Pipeline de Données :**
-    - **Orchestration & Workflow** : Automatisation quotidienne des calculs batch et des alertes de maintenance.
-    - **Couche de Transformation (Spark/Glue)** : Nettoyage et agrégation automatique des historiques de comptage.
-    - **Stockage Analytique (DynamoDB)** : Base de données NoSQL optimisée assurant un temps de réponse millisecondaire.
-    - **Passerelle d'Exposition (API Gateway)** : Point d'accès unique et hermétique garantissant la sécurité des données métiers sans exposition des ressources sous-jacentes.
-    """)

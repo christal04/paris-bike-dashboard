@@ -110,18 +110,24 @@ with tabs[2]:
 # --- TAB 3 : SECURITE CAPTEURS ---
 with tabs[3]:
     st.header("Inactivité Capteurs — Sécurité")
+    st.caption("Suivi de l'état de marche et de la maintenance des capteurs")
+    
     data_inact = app_fetch_data("/sensor-inactivity")
-    if data_inact and "data" in data_inact and len(data_inact["data"]) > 0:
-        latest = data_inact["data"][0]
-        c1, c2, c3, c4 = st.columns(4)
-        c1.metric("Total capteurs", int(latest.get('total_capteurs', 0)))
-        c2.metric("Actifs", int(latest.get('capteurs_actifs', 0)))
-        c3.metric("Inactifs", int(latest.get('capteurs_inactifs', 0)))
-        c4.metric("Taux pannes", f"{latest.get('taux_inactivite_pct', 0)}%", delta_color="inverse")
-        
-        if float(latest.get('taux_inactivite_pct', 0)) > 10:
-            st.error("ALERTE : Taux > 10% — vérification nécessaire sur le terrain")
+    if data_act and "data" in data_inact:
+        if len(data_inact["data"]) > 0:
+            latest = data_inact["data"][0]
+            c1, c2, c3, c4 = st.columns(4)
+            c1.metric("Total capteurs", int(latest.get('total_capteurs', 0)))
+            c2.metric("Actifs", int(latest.get('capteurs_actifs', 0)))
+            c3.metric("Inactifs", int(latest.get('capteurs_inactifs', 0)))
+            c4.metric("Taux pannes", f"{latest.get('taux_inactivite_pct', 0)}%", delta_color="inverse")
+            
+            if float(latest.get('taux_inactivite_pct', 0)) > 10:
+                st.error("ALERTE : Taux > 10% — vérification nécessaire sur le terrain")
+            else:
+                st.success("Statut des capteurs : OPÉRATIONNEL")
         else:
-            st.success("Statut des capteurs : OPÉRATIONNEL")
+            # Ce qui s'affiche si la liste {"data": []} est vide
+            st.success("✅ Aucun capteur inactif détecté. Le réseau de capteurs est 100% opérationnel !")
     else:
         st.error("Données d'inactivité indisponibles via l'API.")
